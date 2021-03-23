@@ -1,0 +1,31 @@
+@media all and (max-width: 680px) { 
+    #app {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+
+    input {
+      font-size: 1em;
+    }
+
+    button {
+      font-size: 0.7em;
+    }
+    
+    #convert_action > button {
+      font-size: 1em;
+    }
+
+    #convert_action > button {
+      margin: 20px 0px 30px 0px;
+    }
+
+    #date {
+      font-size: 0.8em;
+    }
+
+    #break {
+      display: none;
+    }
+}

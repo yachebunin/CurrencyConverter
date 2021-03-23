@@ -1,0 +1,60 @@
+body {
+  background-color: rgb(226, 255, 217);
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0px auto;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  margin: 10px 0px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+button {
+  padding: 5px;
+  outline: none;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #16B67F;
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.currency_list {
+  display: flex;
+  justify-content: space-between;
+}
+
+#convert_action > button {
+  margin-top: 30px;
+  padding: 2px 10px;
+  font-size: 1.5em;
+}
+
+#convert_action > button:hover {
+  background-color: rgb(255, 213, 98);
+}
+
+#break {
+  flex-basis: 100%;
+}
+
+#date {
+  font-size: 1.5em;
+  color: rgb(95, 95, 95);
+}
+
+.isActive {
+  background-color: rgb(255, 213, 98);
+}

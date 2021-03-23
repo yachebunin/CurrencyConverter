@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style.0_720.css" />
+    <script src="/index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <div class="currency_list">
+          <button>RUB</button>
+          <button class="isActive">USD</button>
+          <button>EUR</button>
+          <button>GBP</button>
+        </div>
+        <input id="start_value" type="text" placeholder="0" />
+      </div>
+
+      <div id="convert_action">
+        <button id="convert_action_button">&#8634;</button>
+      </div>
+
+      <div>
+        <div class="currency_list">
+          <button class="isActive">RUB</button>
+          <button>USD</button>
+          <button>EUR</button>
+          <button>GBP</button>
+        </div>
+        <input id="last_value" type="text" value="0" />
+      </div>
+
+      <div id="break"></div>
+
+      <div id="date"></div>
+    </div>
+
+    <script>
+      let RUB, EUR, GBP, USD;
+      let rates;
+
+      async function getConvertInfo() {
+        let response = await fetch(
+          "https://openexchangerates.org/api/latest.json?app_id=c6df5f981bc74c05a8bbd9931f7407dd"
+        );
+
+        let json = await response.json();
+        rates = await json.rates;
+
+        RUB = await rates["RUB"];
+        EUR = await rates["EUR"];
+        GBP = await rates["GBP"];
+        USD = await rates["USD"];
+      }
+
+      convert_action_button.addEventListener("click", async function (event) {
+        document.getElementById("date").innerHTML =
+          new Date().getDate() +
+          "." +
+          getMonth() +
+          "." +
+          getDate() +
+          " (" +
+          getHours() +
+          ":" +
+          getMinutes() +
+          ":" +
+          getSeconds() +
+          ")";
+
+        await getConvertInfo();
+
+        let value1 = +document.getElementById("start_value").value;
+        let value2 = +document.getElementById("last_value").value;
+
+        if (isNaN(value1) || isNaN(value2)) {
+          alert("Вводите только числа!");
+          return;
+        }
+
+        document.getElementById("last_value").value =
+          value1 *
+          (
+            rates[document.querySelectorAll(".isActive")[1].innerHTML] /
+            rates[document.querySelectorAll(".isActive")[0].innerHTML]
+          ).toFixed(3);
+      });
+    </script>
+
+    <script>
+      function getMonth() {
+        if (new Date().getMonth().toString().length == 1) {
+          return "0" + new Date().getMonth();
+        } else {
+          return new Date().getMonth();
+        }
+      }
+
+      function getDate() {
+        if (new Date().getDate().toString().length == 1) {
+          return "0" + new Date().getDate();
+        } else {
+          return new Date().getDate();
+        }
+      }
+
+      function getHours() {
+        if (new Date().getHours().toString().length == 1) {
+          return "0" + new Date().getHours();
+        } else {
+          return new Date().getHours();
+        }
+      }
+
+      function getMinutes() {
+        if (new Date().getMinutes().toString().length == 1) {
+          return "0" + new Date().getMinutes();
+        } else {
+          return new Date().getMinutes();
+        }
+      }
+
+      function getSeconds() {
+        if (new Date().getSeconds().toString().length == 1) {
+          return "0" + new Date().getSeconds();
+        } else {
+          return new Date().getSeconds();
+        }
+      }
+    </script>
+  </body>
+</html>
